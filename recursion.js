@@ -35,3 +35,14 @@ const triangularNumber = (n) => {
 }
 
 //console.log(triangularNumber(2345))
+
+const stringSplitter = (str, splitter) => {
+  if (!str.length) return ''
+
+  if (str[0] === splitter) {
+    return stringSplitter(str.slice(1), splitter)
+  }
+  return str[0] + stringSplitter(str.slice(1), splitter)
+}
+
+// console.log(stringSplitter('02/20/2020', '/'))
