@@ -73,11 +73,11 @@ let mySmallMaze = [
 ];
 
 let bigMaze = [
-  [' ', ' ', ' ', '*', ' ', ' ', ' '],
-  ['*', '*', ' ', ' ', ' ', '*', ' '],
-  [' ', ' ', ' ', '*', ' ', ' ', ' '],
-  [' ', '*', '*', '*', '*', '*', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+    [' ', ' ', ' ', '*', ' ', ' ', ' '],
+    ['*', '*', ' ', '*', ' ', '*', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', '*', '*', '*', '*', '*', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', 'e']
 ];
 
 const exitMaze = (maze, x=0, y=0) => {
@@ -95,21 +95,34 @@ const exitMaze = (maze, x=0, y=0) => {
 //console.log(exitMaze(mySmallMaze));
 //console.log(exitMaze(bigMaze));
 
-const allExitMaze = (maze, x=0, y=0, solutions=[]) => {
-  console.log("Y is: " + y + " , X is: " + x);
-  console.log(solutions);
+const allExitMaze = (maze, x=0, y=0, solution='') => {
+  //console.log("Y is: " + y + " , X is: " + x);
+  //console.log(solutions);
+  const solutions = []
   const copyMaze = Array.from(maze)
-  if (copyMaze[y][x] === 'e') return ''
-  copyMaze[y][x] = '*'
-  let route = ''
-  if (copyMaze[y][x+1] === ' ' || copyMaze[y][x+1] === 'e') route = 'R' + allExitMaze(copyMaze, x+1, y)
-  if (copyMaze[y+1] && (copyMaze[y+1][x] === ' ' || copyMaze[y+1][x] === 'e')) route = 'D' + allExitMaze(copyMaze, x, y+1)
-  if (copyMaze[y][x-1] === ' ' || copyMaze[y][x-1] === 'e') route = 'L' + allExitMaze(copyMaze, x-1, y)
-  if (y>1 && (copyMaze[y-1][x] === ' ' || copyMaze[y-1][x] === 'e')) route = 'U' + allExitMaze(copyMaze, x, y-1)
-  if (x!==0 && y!==0){
-    return route;
+  if (copyMaze[y][x] === 'e') {
+    return solution;
   }
-
+  copyMaze[y][x] = '*'
+  let route = '';
+  if (copyMaze[y][x+1] === ' ' || copyMaze[y][x+1] === 'e') {
+    route = allExitMaze(copyMaze, x+1, y, solution+'R')
+    //if (route) solutions.push(route+":");
+  }
+  if (copyMaze[y+1] && (copyMaze[y+1][x] === ' ' || copyMaze[y+1][x] === 'e')) {
+    route = allExitMaze(copyMaze, x, y+1, solution+'D')
+    //if (route) solutions.push(route+"&");
+  }
+  if (copyMaze[y][x-1] === ' ' || copyMaze[y][x-1] === 'e') {
+    route = allExitMaze(copyMaze, x-1, y, solution+'L')
+    //if (route) solutions.push(route+"^");
+  }
+  if (copyMaze[y-1] && (copyMaze[y-1][x] === ' ' || copyMaze[y-1][x] === 'e')) {
+    route = allExitMaze(copyMaze, x, y-1, solution+'U')
+    //if (route) solutions.push(route+"%");
+  }
+  //console.log(solutions);
+  route ? console.log('Path to the exit: ' + route) : '';
 }
-
-console.log(allExitMaze(bigMaze));
+allExitMaze(bigMaze);
+//console.log(allExitMaze(bigMaze));
