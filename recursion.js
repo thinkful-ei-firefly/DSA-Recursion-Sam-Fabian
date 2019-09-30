@@ -57,3 +57,11 @@ const fibonacci = n => {
 }
 
 //console.log(fibonacci(5));
+
+const factorial = num => {
+  if (num <=0) return 1
+
+  return num*factorial(num-1)
+}
+
+// console.log(factorial(6));
