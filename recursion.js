@@ -72,8 +72,25 @@ let mySmallMaze = [
     [' ', ' ', 'e']
 ];
 
+let bigMaze = [
+  [' ', ' ', ' ', '*', ' ', ' ', ' '],
+  ['*', '*', ' ', '*', ' ', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+  [' ', '*', '*', '*', '*', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+];
+
 const exitMaze = (maze, x=0, y=0) => {
-  if(maze[x][y]===' ')
+  if (maze[y][x+1] === 'e') return ['R']
+  if (maze[y+1][x] === 'e') return ['D']
+  if (x>0 && maze[y][x-1] === 'e') return ['L']
+  if (y>0 && maze[y-1][x] === 'e') return ['U']
+
+  if (maze[y][x+1] === ' ') return ['R', ...exitMaze(maze, x+1, y)]
+  if (maze[y+1][x] === ' ') return ['D', ...exitMaze(maze, x, y+1)]
+  if (maze[y][x-1] === ' ') return ['L', ...exitMaze(maze, x-1, y)]
+  if (maze[y-1][x] === ' ') return ['U', ...exitMaze(maze, x, y-1)]
 }
 
 console.log(exitMaze(mySmallMaze));
+console.log(exitMaze(bigMaze));
