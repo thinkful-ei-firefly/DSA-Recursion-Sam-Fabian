@@ -7,4 +7,15 @@ const sheep = (n) => {
   console.log(n+': another sheep jumped over the fence')
   sheep(n-1);
 }
-sheep(5);
+//sheep(5);
+
+const powerCalculator = (base, exponent) => {
+  if (exponent < 0 ){
+    return console.log('Exponent should be >= 0')
+  }else if(exponent ===0 ){
+    return 1;
+  }
+  return base*(powerCalculator(base, exponent-1))
+}
+
+console.log(powerCalculator(3, 3));
