@@ -27,3 +27,11 @@ const reverseString = (str) => {
 }
 
 // console.log(reverseString('reverse'))
+
+
+const triangularNumber = (n) => {
+  if (n===1) return 1;
+  return triangularNumber(n-1) + n
+}
+
+//console.log(triangularNumber(2345))
