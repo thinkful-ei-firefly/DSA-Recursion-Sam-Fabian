@@ -18,4 +18,12 @@ const powerCalculator = (base, exponent) => {
   return base*(powerCalculator(base, exponent-1))
 }
 
-console.log(powerCalculator(3, 3));
+// console.log(powerCalculator(3, 3));
+
+const reverseString = (str) => {
+  if (!str.length) return ""
+
+  return reverseString(str.slice(1)) + str[0]
+}
+
+// console.log(reverseString('reverse'))
