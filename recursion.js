@@ -119,5 +119,72 @@ const allExitMaze = (maze, x=0, y=0, solution='') => {
   }
   copyMaze[y][x] = ' '
 }
-allExitMaze(bigMaze);
+//allExitMaze(bigMaze);
 //console.log(allExitMaze(bigMaze));
+
+const anagram = (word, currentPosition=0) => {
+  if (currentPosition >= word.length- 1) return '';
+  console.log('WO:'+word + ":C:" + currentPosition);
+  const newWord = word.slice(0, currentPosition) + word.charAt(currentPosition+1) + word.charAt(currentPosition) + word.slice(currentPosition+2)
+  console.log(newWord);
+  //console.log(newWord);
+  //anagram(word, currentPosition+1)
+  //anagram(word, currentPosition+1)
+  anagram(newWord, currentPosition+1)
+  //anagram(newWord, currentPosition+1)
+  //return anagram(word, currentPosition+1, currentPosition+2)
+}
+
+//console.log(anagram('cat'));
+
+const organizationChart = (obj, index=0) => {
+  //console.log(obj);
+  if (index >= obj.length) return ''
+  console.log(obj[index].name);
+
+  if(obj[index].team) organizationChart(obj[index].team, index)
+  organizationChart(obj, index+1)
+
+}
+
+organizationObj = [{
+  name: 'Zuckerberg',
+  team:
+    [{name: 'Schroepfer',
+      team: [{name: 'Bosworth',
+          team: ['Steve',
+            'Kyle',
+            'Andra']},
+        {name: 'Zhao',
+        team:  ['Richie',
+            'Sofia',
+            'Jen']}]},
+    {name: 'Schrage',
+     team: [{name: 'VanDyck',
+            team:['Sabrina',
+            'Michelle',
+            'Josh']},
+        {name: 'Swain',
+        team: ['Blanch',
+            'Tom',
+            'Joe']}]},
+    {name: 'Sandberg',
+      team:  [{name: 'Goler',
+          team:  ['Eddie',
+            'Julie',
+            'Annie']},
+       {name: 'Hernandez',
+        team: ['Rowi',
+            'Inga',
+            'Morgan']},
+       {name: 'Moissinac',
+        team: ['Amy',
+            'Chuck',
+            'Vinni']},
+       {name: 'Kelley',
+        team:  ['Eric',
+            'Ana',
+            'Wes']}]}]
+}]
+
+organizationChart(organizationObj)
