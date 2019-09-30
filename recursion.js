@@ -65,3 +65,15 @@ const factorial = num => {
 }
 
 // console.log(factorial(6));
+
+let mySmallMaze = [
+    [' ', ' ', ' '],
+    [' ', '*', ' '],
+    [' ', ' ', 'e']
+];
+
+const exitMaze = (maze, x=0, y=0) => {
+  if(maze[x][y]===' ')
+}
+
+console.log(exitMaze(mySmallMaze));
