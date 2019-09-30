@@ -96,33 +96,28 @@ const exitMaze = (maze, x=0, y=0) => {
 //console.log(exitMaze(bigMaze));
 
 const allExitMaze = (maze, x=0, y=0, solution='') => {
-  //console.log("Y is: " + y + " , X is: " + x);
-  //console.log(solutions);
   const solutions = []
   const copyMaze = Array.from(maze)
   if (copyMaze[y][x] === 'e') {
-    return solution;
+    console.log(solution);
+    return
   }
   copyMaze[y][x] = '*'
-  let route = '';
-  if (copyMaze[y][x+1] === ' ' || copyMaze[y][x+1] === 'e') {
-    route = allExitMaze(copyMaze, x+1, y, solution+'R')
-    //if (route) solutions.push(route+":");
+
+  if ((copyMaze[y][x+1] === ' ' || copyMaze[y][x+1] === 'e')) {
+    allExitMaze(copyMaze, x+1, y, solution+'R')
+
   }
-  if (copyMaze[y+1] && (copyMaze[y+1][x] === ' ' || copyMaze[y+1][x] === 'e')) {
-    route = allExitMaze(copyMaze, x, y+1, solution+'D')
-    //if (route) solutions.push(route+"&");
+  if ((copyMaze[y+1] && (copyMaze[y+1][x] === ' ' || copyMaze[y+1][x] === 'e'))) {
+    allExitMaze(copyMaze, x, y+1, solution+'D')
   }
-  if (copyMaze[y][x-1] === ' ' || copyMaze[y][x-1] === 'e') {
-    route = allExitMaze(copyMaze, x-1, y, solution+'L')
-    //if (route) solutions.push(route+"^");
+  if ((copyMaze[y][x-1] === ' ' || copyMaze[y][x-1] === 'e')) {
+    allExitMaze(copyMaze, x-1, y, solution+'L')
   }
-  if (copyMaze[y-1] && (copyMaze[y-1][x] === ' ' || copyMaze[y-1][x] === 'e')) {
-    route = allExitMaze(copyMaze, x, y-1, solution+'U')
-    //if (route) solutions.push(route+"%");
+  if ((copyMaze[y-1] && (copyMaze[y-1][x] === ' ' || copyMaze[y-1][x] === 'e'))) {
+    allExitMaze(copyMaze, x, y-1, solution+'U')
   }
-  //console.log(solutions);
-  route ? console.log('Path to the exit: ' + route) : '';
+  copyMaze[y][x] = ' '
 }
 allExitMaze(bigMaze);
 //console.log(allExitMaze(bigMaze));
