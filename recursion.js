@@ -46,3 +46,14 @@ const stringSplitter = (str, splitter) => {
 }
 
 // console.log(stringSplitter('02/20/2020', '/'))
+
+const fibonacci = n => {
+  if (n <= 0) return 'Number must be > 0'
+  let aux = fibonacci(n-1)
+  const lastNumber = aux[aux.length-1] || 0;
+  const second = aux[aux.length-2] || 0;
+  if (n === 1) return [1]
+  return [...aux, lastNumber+second]
+}
+
+//console.log(fibonacci(5));
